@@ -1,32 +1,23 @@
 """Generate sales report showing total melons each salesperson sold."""
 
-#lists to store names and melons sold
-#suggestion: dictionary to store both would be ideal
-salespeople = []
-melons_sold = []
 
-melons_dict = {}
+def print_sales_report(txt_file):
+    '''print the sales report of number of melons sold by each salesperson'''
 
-#open file and separate salesperson from melons sold into string and int, respectively
-f = open('sales-report.txt')
-for line in f:
-    line = line.rstrip()
-    entries = line.split('|')
+    f = open(txt_file)
 
-    salesperson = entries[0]
-    melons = int(entries[2])
+    melons_dict = {}
 
-    melons_dict[salesperson] = melons
+    for line in f:
+        line = line.rstrip()
+        entries = line.split('|')
 
+        salesperson = entries[0]
+        melons = int(entries[2])
 
-    if salesperson in salespeople:
-        position = salespeople.index(salesperson)
+        melons_dict[salesperson] = melons
 
-        melons_sold[position] += melons
-    else:
-        salespeople.append(salesperson)
-        melons_sold.append(melons)
+    for salesperson, value in melons_dict.items():
+        print(f"{salesperson} sold {value} melons.")
 
-
-for i in range(len(salespeople)):
-    print(f'{salespeople[i]} sold {melons_sold[i]} melons')
+print_sales_report("sales-report.txt")
