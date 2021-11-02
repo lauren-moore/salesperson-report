@@ -4,8 +4,10 @@
 def print_sales_report(txt_file):
     '''print the sales report of number of melons sold by each salesperson'''
 
+    #open the text file
     f = open(txt_file)
 
+    #dictionary to store salespeople annd melons sold
     melons_dict = {}
 
     for line in f:
@@ -15,6 +17,7 @@ def print_sales_report(txt_file):
         salesperson = entries[0]
         melons = int(entries[2])
 
+        #add each salesperson and number of melons sold to dictionary
         melons_dict[salesperson] = melons
 
     for salesperson, value in melons_dict.items():
