@@ -1,7 +1,7 @@
 """Generate sales report showing total melons each salesperson sold."""
 
 
-def print_sales_report(txt_file):
+def add_sales_to_report(txt_file):
     '''print the sales report of number of melons sold by each salesperson'''
 
     #open the text file
@@ -20,7 +20,20 @@ def print_sales_report(txt_file):
         #add each salesperson and number of melons sold to dictionary
         melons_dict[salesperson] = melons
 
-    for salesperson, value in melons_dict.items():
-        print(f"{salesperson} sold {value} melons.")
+        if salesperson in melons_dict:
+            melons_dict[salesperson] += melons
+        else:
+            melons_dict[salesperson] = melons
+    
+    return melons_dict
 
-print_sales_report("sales-report.txt")
+        
+
+def print_sales_report(print_sales_report):
+    '''print a report of the salespeople and the number of melons sold'''
+  
+    for salesperson, melons in print_sales_report.items():
+        print(f'{salesperson} sold {melons} melons')
+
+
+print_sales_report(add_sales_to_report('sales-report.txt'))
